@@ -1,0 +1,21 @@
+<resources>
+    General Values
+    <string name="app_name">Fingerprint Diary</string>
+
+    Buttons
+    <string name="log_in">Log In</string>
+
+    User messages
+    <string name="error_message_no_biometrics">Unfortunately, your device does not support fingerprints. :(</string>
+    <string name="error_message_exit">Exit</string>
+
+    Tabs
+    <string name="tab_diary_entries">Your Entries</string>
+    <string name="tab_diary_calendar">Calendar</string>
+    <string name="title_activity_main2">MainActivity2</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+
+    Content descriptions
+    <string name="contentDescription_fabDiaryEntry">A button to make new entry</string>
+</resources>
