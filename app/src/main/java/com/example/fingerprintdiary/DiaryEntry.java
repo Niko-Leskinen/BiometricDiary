@@ -1,26 +1,19 @@
 package com.example.fingerprintdiary;
 
-import java.util.ArrayList;
-
 public class DiaryEntry {
-    private String mText;
+    int _id;
+    String _text;
 
-    public DiaryEntry(String text) {
-        mText = text;
+    public DiaryEntry() {}
+
+    public DiaryEntry(int id, String text) {
+        this._id = id;
+        this._text = text;
     }
 
-    public String getText() {
-        return mText;
-    }
-
-    private static int lastEntryId = 0;
-
-    public static ArrayList<DiaryEntry> createEntriesList(int numEntries) {
-        ArrayList<DiaryEntry> entries = new ArrayList<DiaryEntry>();
-
-        for (int i = 1; i <= numEntries; i++) {
-            entries.add(new DiaryEntry("Text"+ ++lastEntryId));
-        }
-        return entries;
-    }
+    // Getters & Setters
+    public void setID(int id) { this._id = id; }
+    public int getID() { return this._id; }
+    public void setText(String text) { this._text =  text; }
+    public String getText() { return this._text; }
 }

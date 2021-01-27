@@ -6,7 +6,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.provider.BaseColumns;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -14,7 +17,7 @@ import java.util.List;
 
 public class DiaryActivity extends AppCompatActivity {
 
-    ArrayList<DiaryEntry> entries;
+    List<DiaryEntry> entries;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,8 +28,13 @@ public class DiaryActivity extends AppCompatActivity {
         setSupportActionBar(diaryToolbar);
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView_entries);
-        entries = DiaryEntry.createEntriesList(20);
 
+        DiaryEntryDbHelper dbHelper = new DiaryEntryDbHelper(this);
+        int iterations = 10;
+        for (int i = 0; i < iterations; i++) {
+            dbHelper.addEntry(new DiaryEntry(i,"text"+i));
+        }
+        entries = dbHelper.getAllEntries();
         DiaryAdapter adapter = new DiaryAdapter(entries);
         recyclerView.setAdapter(adapter);
 
