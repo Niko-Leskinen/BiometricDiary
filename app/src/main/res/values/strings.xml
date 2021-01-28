@@ -4,10 +4,13 @@
 
     Buttons
     <string name="log_in">Log In</string>
+    <string name="yes">Yes</string>
+    <string name="cancel">Cancel</string>
 
     User messages
     <string name="error_message_no_biometrics">Unfortunately, your device does not support fingerprints. :(</string>
     <string name="error_message_exit">Exit</string>
+    <string name="on_create_entry_message_confirmation">Save the entry</string>
 
     Tabs
     <string name="tab_diary_entries">Your Entries</string>
@@ -18,4 +21,6 @@
 
     Content descriptions
     <string name="contentDescription_fabDiaryEntry">A button to make new entry</string>
+    <string name="createEntryTitleTip">Title</string>
+    <string name="createEntryTextTip">Entry</string>
 </resources>

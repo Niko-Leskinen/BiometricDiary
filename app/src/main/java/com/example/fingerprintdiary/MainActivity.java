@@ -14,6 +14,10 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 
+import java.text.DateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 public class MainActivity extends AppCompatActivity {
 
     BiometricActivity biometricActivity;
@@ -27,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
 
         biometricActivity = new BiometricActivity();
 
-        /*
         // Important, check the biometric capability of the device at start
         if (biometricActivity.checkCompatibility(this) == true) {
             // Good
@@ -35,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
             alertDialog();
         }
 
-         */
+
         button_login = findViewById(R.id.button_logIn);
         button_login.setOnClickListener(new View.OnClickListener() {
 
@@ -54,11 +57,7 @@ public class MainActivity extends AppCompatActivity {
         builder.setIcon(R.mipmap.ic_launcher);
         builder.setMessage(R.string.error_message_no_biometrics).setCancelable(false)
                 .setPositiveButton(R.string.error_message_exit,
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                finish();
-                            }
-                        });
+                        (dialog, id) -> finish());
 
         AlertDialog alert = builder.create();
         alert.show();

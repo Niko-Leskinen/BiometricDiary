@@ -15,6 +15,8 @@ public class DiaryEntryDbHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "DiaryEntries.db";
     private static final String TABLE_ENTRIES = "entries";
     private static final String KEY_ID = "id";
+    private static final String KEY_TITLE = "title";
+    private static final String KEY_DATE = "date";
     private static final String KEY_TEXT ="text";
 
     public DiaryEntryDbHelper(Context context) {
@@ -22,7 +24,7 @@ public class DiaryEntryDbHelper extends SQLiteOpenHelper {
     }
 
     private static final String SQL_CREATE_ENTRIES = "CREATE TABLE " + TABLE_ENTRIES + "("
-            + KEY_ID + " INTEGER PRIMARY KEY," + KEY_TEXT + " TEXT)";
+            + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + KEY_DATE + " TEXT," + KEY_TITLE + " TEXT," + KEY_TEXT + " TEXT)";
 
     private static final String SQL_DELETE_ENTRIES = "DROP TABLE IF EXISTS " +
             TABLE_ENTRIES;
@@ -38,13 +40,20 @@ public class DiaryEntryDbHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+    public void deleteTable() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL(SQL_DELETE_ENTRIES);
+        onCreate(db);
+    }
+
     // Add a new DiaryEntry object in to the DB
     void addEntry(DiaryEntry diaryEntry) {
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
-        values.put(KEY_ID, diaryEntry.getID());
+        values.put(KEY_DATE, diaryEntry.getDate());
+        values.put(KEY_TITLE, diaryEntry.getTitle());
         values.put(KEY_TEXT, diaryEntry.getText());
         db.insert(TABLE_ENTRIES, null, values);
 
@@ -55,14 +64,16 @@ public class DiaryEntryDbHelper extends SQLiteOpenHelper {
     public List<DiaryEntry> getAllEntries() {
         List<DiaryEntry> entryList = new ArrayList<DiaryEntry>();
 
-        String selectQuery = "SELECT * FROM " + TABLE_ENTRIES;
+        String selectQuery = "SELECT * FROM " + TABLE_ENTRIES + " ORDER BY " + KEY_ID + " DESC";
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery,null);
         if (cursor.moveToFirst()) {
             do {
                 DiaryEntry diaryEntry = new DiaryEntry();
                 diaryEntry.setID(Integer.parseInt(cursor.getString(0)));
-                diaryEntry.setText(cursor.getString(1));
+                diaryEntry.setDate(cursor.getString(1));
+                diaryEntry.setTitle(cursor.getString(2));
+                diaryEntry.setText(cursor.getString(3));
                 entryList.add(diaryEntry);
             } while (cursor.moveToNext());
         }

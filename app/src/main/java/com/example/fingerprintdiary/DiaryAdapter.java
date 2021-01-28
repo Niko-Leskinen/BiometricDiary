@@ -15,10 +15,14 @@ public class DiaryAdapter extends RecyclerView.Adapter<DiaryAdapter.ViewHolder> 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
+        public TextView date;
+        public TextView title;
         public TextView textView;
 
         public ViewHolder(@NonNull View view) {
             super(view);
+            date = (TextView) view.findViewById(R.id.diaryDate);
+            title = (TextView) view.findViewById(R.id.diaryTitle);
             textView = (TextView) view.findViewById(R.id.diaryEntry);
         }
 
@@ -51,6 +55,10 @@ public class DiaryAdapter extends RecyclerView.Adapter<DiaryAdapter.ViewHolder> 
 
         DiaryEntry diaryEntry = mEntries.get(position);
 
+        TextView date = viewHolder.date;
+        date.setText(diaryEntry.getDate());
+        TextView title = viewHolder.title;
+        title.setText(diaryEntry.getTitle());
         TextView textView = viewHolder.textView;
         textView.setText(diaryEntry.getText());
     }
