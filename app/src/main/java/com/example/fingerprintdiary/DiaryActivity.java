@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -25,13 +27,6 @@ public class DiaryActivity extends AppCompatActivity {
         Toolbar diaryToolbar = findViewById(R.id.diary_toolbar);
         setSupportActionBar(diaryToolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_newDiaryEntry);
-        fab.setOnClickListener(v -> {
-            Intent intent = new Intent(DiaryActivity.this, CreateDiaryEntryActivity.class);
-            startActivity(intent);
-            this.finish();
-        });
-
         RecyclerView recyclerView = findViewById(R.id.recyclerView_entries);
 
         DiaryEntryDbHelper dbHelper = new DiaryEntryDbHelper(this);
@@ -41,5 +36,28 @@ public class DiaryActivity extends AppCompatActivity {
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.menuAction_newEntry:
+                Intent intent = new Intent(DiaryActivity.this, CreateDiaryEntryActivity.class);
+                startActivity(intent);
+                this.finish();
+                return true;
+
+            case R.id.menuAction_settings:
+                // TODO
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

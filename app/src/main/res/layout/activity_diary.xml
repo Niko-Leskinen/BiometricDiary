@@ -14,10 +14,10 @@
         android:background="?attr/colorPrimary"
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tabLayout"
@@ -47,24 +47,7 @@
         android:id="@+id/recyclerView_entries"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tabLayout"></androidx.recyclerview.widget.RecyclerView>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_newDiaryEntry"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="300dp"
-        android:layout_marginTop="600dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginBottom="100dp"
-        android:clickable="true"
-        android:contentDescription="@string/contentDescription_fabDiaryEntry"
-        app:layout_constraintBottom_toBottomOf="@+id/recyclerView_entries"
-        app:layout_constraintEnd_toEndOf="@+id/recyclerView_entries"
-        app:layout_constraintStart_toStartOf="@+id/recyclerView_entries"
-        app:layout_constraintTop_toTopOf="@+id/recyclerView_entries"
-        app:srcCompat="@android:drawable/ic_input_add" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

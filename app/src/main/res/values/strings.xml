@@ -23,4 +23,5 @@
     <string name="contentDescription_fabDiaryEntry">A button to make new entry</string>
     <string name="createEntryTitleTip">Title</string>
     <string name="createEntryTextTip">Entry</string>
+    <string name="diaryInputButton">Save your entry</string>
 </resources>
