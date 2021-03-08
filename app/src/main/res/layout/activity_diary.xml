@@ -20,7 +20,7 @@
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
     <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabLayout"
+        android:id="@+id/tabLayout_entries"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="#80000000"
@@ -47,7 +47,24 @@
         android:id="@+id/recyclerView_entries"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tabLayout"></androidx.recyclerview.widget.RecyclerView>
+        app:layout_constraintTop_toBottomOf="@+id/tabLayout_entries"></androidx.recyclerview.widget.RecyclerView>
+
+    <CalendarView
+        android:id="@+id/calendarView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/round_background"
+        android:dateTextAppearance="@style/CalenderViewDateCustomText"
+        android:theme="@style/CalenderViewCustom"
+        android:visibility="visible"
+        android:weekDayTextAppearance="@style/CalenderViewWeekCustomText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tabLayout_entries" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

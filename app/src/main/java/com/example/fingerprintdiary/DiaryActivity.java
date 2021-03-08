@@ -9,9 +9,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.CalendarView;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.List;
 
@@ -28,6 +29,8 @@ public class DiaryActivity extends AppCompatActivity {
         setSupportActionBar(diaryToolbar);
 
         RecyclerView recyclerView = findViewById(R.id.recyclerView_entries);
+        CalendarView calendarView = findViewById(R.id.calendarView);
+        calendarView.setVisibility(View.GONE);
 
         DiaryEntryDbHelper dbHelper = new DiaryEntryDbHelper(this);
         entries = dbHelper.getAllEntries();
@@ -36,6 +39,35 @@ public class DiaryActivity extends AppCompatActivity {
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
+
+        // TabLayout switch
+        TabLayout tabLayout = findViewById(R.id.tabLayout_entries);
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                int position = tab.getPosition();
+                switch (position) {
+                    case 0:
+                        calendarView.setVisibility(View.GONE);
+                        recyclerView.setVisibility(View.VISIBLE);
+                        break;
+                    case 1:
+                        recyclerView.setVisibility(View.GONE);
+                        calendarView.setVisibility(View.VISIBLE);
+                        break;
+                }
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

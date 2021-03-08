@@ -1,6 +1,7 @@
 package com.example.fingerprintdiary;
 
 import android.content.Context;
+import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,6 +60,7 @@ public class DiaryAdapter extends RecyclerView.Adapter<DiaryAdapter.ViewHolder> 
         date.setText(diaryEntry.getDate());
         TextView title = viewHolder.title;
         title.setText(diaryEntry.getTitle());
+        title.setPaintFlags(title.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG); // Set underline to title text
         TextView textView = viewHolder.textView;
         textView.setText(diaryEntry.getText());
     }
