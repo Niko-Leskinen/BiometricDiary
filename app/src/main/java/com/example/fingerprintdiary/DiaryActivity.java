@@ -1,5 +1,6 @@
 package com.example.fingerprintdiary;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -11,9 +12,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CalendarView;
+import android.widget.TextView;
 
 import com.google.android.material.tabs.TabLayout;
 
+import org.w3c.dom.Text;
+
+import java.util.Date;
 import java.util.List;
 
 public class DiaryActivity extends AppCompatActivity {
@@ -68,6 +73,19 @@ public class DiaryActivity extends AppCompatActivity {
 
             }
         });
+
+        // Calendar
+        TextView testText = findViewById(R.id.dateTest);
+
+        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+
+            @Override
+            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
+                month = month + 1;  // Months start at 0 (January) so add 1
+                testText.setText(""+dayOfMonth+"."+month+"."+year);
+            }
+        });
+
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -81,7 +99,6 @@ public class DiaryActivity extends AppCompatActivity {
             case R.id.menuAction_newEntry:
                 Intent intent = new Intent(DiaryActivity.this, CreateDiaryEntryActivity.class);
                 startActivity(intent);
-                this.finish();
                 return true;
 
             case R.id.menuAction_settings:
